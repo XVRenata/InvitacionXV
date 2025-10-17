@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis XV - Renata</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <style>
+        @font-face {
+            font-family: 'Shecarea';
+            src: url('resources/Shecarea.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        .shecarea-font {
+            font-family: 'Shecarea', cursive;
+        }
+
+        body {
+            background-image: url("resources/background.jpg");
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            margin: 0;
+            padding: 0;
+        }
+
+        .main-block-wrapper {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-block {
+            width: 100%;
+            max-width: 1200px;
+            overflow: hidden;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            transform-origin: top center;
+        }
+
+        .pink-divider {
+            height: 2px;
+            width: 100%;
+            background-color: #EF9FA2;
+            margin: 2rem 0;
+            z-index: 10;
+        }
+
+        .custom-gradient {
+            background: linear-gradient(to top, #EF9FA2, transparent);
+            width: 100%;
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .play-btn {
+            width: 40px;
+            height: 40px;
+            background-color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s, box-shadow 0.2s;
+            position: relative;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+        }
+
+        .play-icon {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 18px solid #EF9FA2;
+            position: absolute;
+            transform: rotate(90deg);
+            transition: all 0.2s;
+        }
+
+        .paused .play-icon {
+            width: 14px;
+            height: 14px;
+            border-left: 0;
+            border-right: 0;
+            border-bottom: 0;
+            background: #EF9FA2;
+            clip-path: none;
+        }
+
+        .main-block video {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        .content-center {
+            width: 100%;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            width: 100%;
+            position: relative;
+            z-index: 10;
+            margin-top: 2rem;
+        }
+
+        /* Imagen de flores ajustada */
+        .flower-img {
+            position: absolute;
+            width: 16rem;
+            /* equivale aprox a w-64 */
+            left: -20%;
+            /* un tercio fuera del bloque */
+            top: 350px;
+            /* ajusta este valor para alinear con el separador */
+            transform: translateY(-50%);
+            z-index: 15;
+            pointer-events: none;
+        }
+
+        /* Para pantallas medianas en adelante (tablets/PC) */
+        @media (min-width: 768px) {
+            .flower-img {
+                left: -10%;
+                /* se mete menos hacia afuera */
+                width: 18rem;
+                /* opcional: hacerla un poquito más grande en PC */
+            }
+        }
+
+        /* Para pantallas grandes (monitores grandes) */
+        @media (min-width: 1200px) {
+            .flower-img {
+                left: -5%;
+                /* casi pegada al bloque */
+                width: 20rem;
+                /* crece un poco más si quieres */
+            }
+        }
+
+        @media (min-width: 1024px) {
+            html {
+                overflow-x: hidden;
+            }
+        }
+
+        /* Animación de aparición con opacidad */
+        @keyframes fadeInCustom {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .animate-fadeIn {
+            animation: fadeInCustom 2s ease forwards;
+            animation-delay: 1s;
+            /* aparece después de un pequeño tiempo */
+        }
+
+        /* Animación de "apertura" de izquierda a derecha */
+        @keyframes revealBox {
+            from {
+                clip-path: inset(0 100% 0 0);
+                /* oculto totalmente desde la derecha */
+            }
+
+            to {
+                clip-path: inset(0 0 0 0);
+                /* completamente visible */
+            }
+        }
+
+        .animate-reveal {
+            animation: revealBox 2s ease forwards;
+        }
+
+        @keyframes slideUpFadeIn {
+            0% {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+
+        /* Animación de desplazamiento de izquierda a derecha para textos */
+        @keyframes slideRightFadeIn {
+            0% {
+                transform: translateX(-40px);
+                opacity: 0;
+            }
+
+            100% {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .animate-slide-right {
+            animation: slideRightFadeIn 1s ease forwards;
+        }
+
+
+        .animate-slide-up {
+            animation: slideUpFadeIn 1s ease forwards;
+        }
+
+
+        .date-rect {
+            background-color: rgba(239, 159, 162, 0.8);
+            /* Rosa con 80% de opacidad */
+            border-radius: 3rem;
+            /* Bordes redondeados */
+            padding: 0.7rem 1rem;
+            font-family: 'Shecarea', cursive;
+            opacity: 0;
+            /* empieza invisible para animación */
+            transform: translateY(40px);
+            /* empieza un poco abajo */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        .date-rect.animate-slide-up {
+            animation: slideUpFadeIn 1s ease forwards;
+            animation-delay: 0.5s;
+            /* Ajusta el retraso si quieres */
+        }
+
+        /* Separador ancho completo */
+        .full-width-separator {
+            width: 100vw;
+            height: 1rem;
+            background-color: #EF9FA2;
+            margin-top: 0rem;
+        }
+
+        .next-block {
+            position: relative;
+            /* necesario para que el separador absoluto se posicione respecto a este bloque */
+        }
+
+        .ubicacion-card {
+            max-width: 800px;
+            /* opcional para limitarlo en pantallas grandes */
+            position: relative;
+            overflow: hidden;
+            /* importante para cortar las flores que sobresalgan */
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-80px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .animate-fadeInUp {
+            animation: fadeInUp 1.2s ease-out forwards;
+        }
+
+        .animate-fadeInLeft {
+            animation: fadeInLeft 1.2s ease-out forwards;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="main-block-wrapper">
+        <div class="main-block">
+
+            <!-- Video principal -->
+            <video autoplay muted loop playsinline>
+                <source src="resources/presentacion.mp4" type="video/mp4">
+            </video>
+
+            <div class="content-center py-10 text-center text-[#EF9FA2]">
+                <h2 id="main-title" class="text-3xl font-serif animate-on-scroll"
+                    data-animate="animate__animated animate__fadeInLeft">MIS XV</h2>
+                <h1 class="text-8xl shecarea-font mt-2 animate-on-scroll"
+                    data-animate="animate__animated animate__fadeInLeft">Renata
+                </h1>
+
+                <!-- Botón de reproducción y separador debajo -->
+                <div class="button-container">
+                    <h2 class="text-3xl font-serif text-white animate-on-scroll mb-4" style="z-index: 10;"
+                        data-animate="animate__animated animate__fadeInUp">
+                        CLIC AQUÍ
+                    </h2>
+
+                    <button id="playBtn" class="play-btn animate-on-scroll"
+                        data-animate="animate__animated animate__fadeInUp">
+                        <div class="play-icon"></div>
+                    </button>
+                    <audio id="backgroundAudio" src="resources/cancion.mp3" loop></audio>
+
+                    <!-- Separador debajo del botón -->
+                    <div id="divider" class="pink-divider"></div>
+
+                    <!-- Degradado fijo correctamente posicionado debajo del botón -->
+                    <div class="custom-gradient" style="top:-220px; height:350px;"></div>
+                </div>
+
+                <!-- Imagen decorativa posicionada -->
+                <img src="resources/flores_1.png" alt="Flores decorativas" class="flower-img">
+
+                <!-- Contenedor general -->
+                <div class="relative w-full flex justify-center mt-20">
+
+                    <!-- Cuadro rosa con texto -->
+                    <div class="pink-box bg-[#EF9FA2] w-[70%] p-8 text-center animate-on-scroll"
+                        data-animate="animate-reveal">
+                        <p class="font-serif italic text-white text-lg leading-relaxed">
+                            "Hoy comienza un nuevo <br>
+                            capítulo en mi vida, y no hay <br>
+                            mayor alegría que compartirlo <br>
+                            con las personas que más <br>
+                            quiero. Te invito a celebrar mis <br>
+                            XV en una noche mágica e <br>
+                            inolvidable."
+                        </p>
+                    </div>
+
+                    <!-- Sello, colocado por encima y fuera del cuadro -->
+                    <img src="resources/sello.png" alt="Sello decorativo"
+                        class="absolute left-1/2 top-[-5px] transform -translate-x-1/2 -translate-y-1/2 w-24 h-24 object-contain opacity-0 animate-on-scroll"
+                        data-animate="animate-fadeIn" />
+                </div>
+
+                <!-- Rectángulo con fecha -->
+                <div class="relative w-full flex justify-center mt-8">
+                    <div class="date-rect animate-on-scroll" data-animate="animate-slide-up">
+                        <p class="text-white text-lg font-serif">12 DE DICIEMBRE 2025</p>
+                    </div>
+                </div>
+
+                <!-- Separador ancho completo -->
+                <div class="full-width-separator" , style="margin-top: 2rem;"></div>
+
+                <!-- Nuevo bloque abajo -->
+                <div class="next-block relative w-full flex flex-col items-center justify-center py-20 bg-transparent">
+
+                    <!-- Imagen esquina superior derecha con animación -->
+                    <!-- Imagen esquina superior derecha -->
+                    <img src="resources/flores_esqsupder.png" alt="Flores esquina superior derecha"
+                        class="absolute top-0 right-[-20px] w-40 h-40 object-contain pointer-events-none animate-on-scroll"
+                        data-animate="animate-slide-up" />
+
+                    <!-- Imagen esquina inferior izquierda -->
+                    <img src="resources/flores_esqinfizq.png" alt="Flores esquina inferior izquierda"
+                        class="absolute bottom-0 left-[-20px] w-40 h-40 object-contain pointer-events-none animate-on-scroll"
+                        data-animate="animate-slide-up" />
+
+                    <!-- Contenedor de textos -->
+                    <div class="text-center space-y-6">
+                        <p class="font-serif italic text-[#E18A8A] text-2xl animate-on-scroll"
+                            data-animate="animate-slide-right">
+                            Con la bendición de Dios<br>y de mis padres
+                        </p>
+
+                        <p class="font-serif text-[#985656] text-2xl animate-on-scroll"
+                            data-animate="animate-slide-right">
+                            Ana Laura López Álvarez<br>José de Jesús Vázquez Betancourt
+                        </p>
+
+                        <p class="font-serif italic text-[#E18A8A] text-2xl animate-on-scroll"
+                            data-animate="animate-slide-right">
+                            Acompañada de<br>mis padrinos
+                        </p>
+
+                        <p class="font-serif text-[#985656] text-2xl animate-on-scroll"
+                            data-animate="animate-slide-right">
+                            Brenda López Álvarez<br>Benito Escalante Resendiz
+                        </p>
+                    </div>
+
+                    <!-- Separador pegado al fondo -->
+                    <div class="full-width-separator absolute bottom-0 left-0"></div>
+
+                </div>
+
+                <!-- Bloque Ubicaciones -->
+                <div class="ubicaciones-block w-full flex flex-col items-center justify-center py-16 bg-transparent">
+
+                    <!-- Título principal -->
+                    <h2 class="font-serif italic text-[#E18A8A] text-3xl mb-10 animate-on-scroll"
+                        data-animate="animate-slide-right">Ubicacion</h2>
+
+                    <!-- Cuadro blanco -->
+                    <div
+                        class="ubicacion-card relative bg-white shadow-2xl w-4/5 flex flex-col items-center text-center overflow-hidden p-8 animate-on-scroll" data-animate="animate-slide-right">
+
+                        <!-- Título dentro -->
+                        <h3 class="font-serif italic text-[#E18A8A] text-2xl mb-4"> Misa y Recepción</h3>
+
+                        <!-- Icono -->
+                        <img src="resources/ubi.png" alt="Icono ubicación" class="w-12 h-12 mb-4" />
+
+                        <div class="space-y-2">
+                            <!-- Nombre del salón -->
+                            <p class="font-serif text-[#985656] text-2xl leading-snug">
+                                Salón <br> "Palacio Real"
+                            </p>
+
+                            <!-- Dirección -->
+                            <p class="font-serif text-[#985656] text-base leading-snug">
+                                Hecelchakán 89-Mz 23 Lt 11,<br>
+                                Cuchilla de Padierna, Tlalpan,<br>
+                                14220 CDMX
+                            </p>
+
+                            <!-- Hora -->
+                            <p class="font-serif text-[#985656] text-2xl leading-snug">
+                                5:00pm
+                            </p>
+                        </div>
+
+                        <!-- Botón Ver mapa -->
+                        <a href="https://maps.app.goo.gl/19XpEDbpfrhjBHv46" target="_blank"
+                            class="bg-[#E18A8A] font-serif text-white px-6 py-2 rounded-full shadow-md hover:bg-[#d37979] transition"
+                            style="margin-top: 1rem; margin-bottom: 5rem;">
+                            Ver mapa
+                        </a>
+
+                        <!-- Flores al fondo del cuadro -->
+                        <img src="resources/flores_1.png" alt="Flores decorativas"
+                            class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-8 w-4/5 object-contain pointer-events-none" />
+
+                    </div>
+
+
+                </div>
+                <div class="full-width-separator left-0"></div>
+                <!-- Bloque Confirmación y Mensaje Final -->
+                <div class="relative w-full flex flex-col items-center justify-center py-20 bg-transparent">
+
+                    <!-- Imagen decorativa esquina superior derecha -->
+                    <img src="resources/flores_esqsupder.png" alt="Flores decorativas"
+                        class="absolute top-10 right-0 w-40 h-40 object-contain pointer-events-none z-40 opacity-0 animate-on-scroll"
+                        data-animate="animate-fadeInUp" />
+
+                    <!-- Imagen decorativa entre los cuadros -->
+                    <img src="resources/flores_1.png" alt="Flores decorativas"
+                        class="absolute top-2/5 left-2/5 transform -translate-x-1/2 -translate-y-1/2 w-56 object-contain pointer-events-none z-30 opacity-0 animate-on-scroll"
+                        data-animate="animate-fadeInUp" />
+
+                    <!-- Imagen decorativa esquina inferior izquierda -->
+                    <img src="resources/flores_esqinfizq.png" alt="Flores decorativas"
+                        class="absolute bottom-0 left-0 w-40 h-40 object-contain pointer-events-none z-40 opacity-0 animate-on-scroll"
+                        data-animate="animate-fadeInUp" />
+
+                    <!-- Primer cuadro (Confirmar asistencia) -->
+                    <div
+                        class="relative bg-white rounded-3xl shadow-2xl w-4/5 md:w-3/5 aspect-square flex flex-col items-center justify-center text-center p-8 mb-16 z-30 opacity-0 animate-on-scroll" data-animate="animate-fadeInLeft">
+
+                        <h2 class="font-serif text-[#E18A8A] text-3xl mb-6">Confirmar<br>asistencia</h2>
+
+                        <!-- Botón WhatsApp -->
+                        <a href="https://wa.me/5215529000374?text=Asistiré" target="_blank"
+                            class="mb-6 transition transform hover:scale-110">
+                            <img src="resources/check.png" alt="Confirmar asistencia" class="w-16 h-16" />
+                        </a>
+
+                        <p class="font-serif text-[#985656] text-base leading-snug">
+                            Agradeceremos mucho que<br>
+                            confirmes tu asistencia.<br>
+                            ¡Queremos contar contigo en<br>
+                            este día tan especial!
+                        </p>
+                    </div>
+
+                    <!-- Segundo cuadro (Mensaje final) -->
+                    <div
+                        class="relative bg-white rounded-3xl shadow-2xl w-4/5 md:w-3/5 aspect-square flex flex-col items-center justify-center text-center p-8 z-20 opacity-0 animate-on-scroll" data-animate="animate-fadeInLeft">
+
+                        <h2 class="font-serif text-[#E18A8A] text-3xl mb-6">Te esperamos</h2>
+
+                        <p class="font-serif text-[#985656] text-base leading-snug">
+                            Con mucho cariño y<br>
+                            emoción, te esperamos<br>
+                            para compartir juntos un<br>
+                            momento inolvidable, lleno<br>
+                            de alegría, amor y<br>
+                            recuerdos que quedarán<br>
+                            por siempre en nuestro<br>
+                            corazón.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const playBtn = document.getElementById('playBtn');
+        const audio = document.getElementById('backgroundAudio');
+
+        playBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playBtn.classList.add('paused');
+            } else {
+                audio.pause();
+                playBtn.classList.remove('paused');
+            }
+        });
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const animatedItems = document.querySelectorAll(".animate-on-scroll");
+
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const animation = entry.target.dataset.animate;
+
+                        // Agregar todas las clases de animación (pueden ser varias)
+                        animation.split(" ").forEach(cls => entry.target.classList.add(cls));
+
+                        obs.unobserve(entry.target); // Se anima solo la primera vez
+                    }
+                });
+            }, { threshold: 0.2 });
+
+            animatedItems.forEach(item => observer.observe(item));
+        });
+    </script>
+
+</body>
+
+</html>
