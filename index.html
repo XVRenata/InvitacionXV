@@ -7,6 +7,7 @@
     <title>Mis XV - Renata</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="icon" href="resources/sello.png" type="image/png">
     <style>
         @font-face {
             font-family: 'Shecarea';
@@ -387,7 +388,7 @@
                 <!-- Rectángulo con fecha -->
                 <div class="relative w-full flex justify-center mt-8">
                     <div class="date-rect animate-on-scroll" data-animate="animate-slide-up">
-                        <p class="text-white text-lg font-serif">12 DE DICIEMBRE 2025</p>
+                        <p class="text-white text-lg font-serif">VIERNES 12 DE DICIEMBRE 2025</p>
                     </div>
                 </div>
 
@@ -398,7 +399,6 @@
                 <div class="next-block relative w-full flex flex-col items-center justify-center py-20 bg-transparent">
 
                     <!-- Imagen esquina superior derecha con animación -->
-                    <!-- Imagen esquina superior derecha -->
                     <img src="resources/flores_esqsupder.png" alt="Flores esquina superior derecha"
                         class="absolute top-0 right-[-20px] w-40 h-40 object-contain pointer-events-none animate-on-scroll"
                         data-animate="animate-slide-up" />
@@ -444,8 +444,8 @@
                         data-animate="animate-slide-right">Ubicacion</h2>
 
                     <!-- Cuadro blanco -->
-                    <div
-                        class="ubicacion-card relative bg-white shadow-2xl w-4/5 flex flex-col items-center text-center overflow-hidden p-8 animate-on-scroll" data-animate="animate-slide-right">
+                    <div class="ubicacion-card relative bg-white shadow-2xl w-4/5 flex flex-col items-center text-center overflow-hidden p-8 animate-on-scroll"
+                        data-animate="animate-slide-right">
 
                         <!-- Título dentro -->
                         <h3 class="font-serif italic text-[#E18A8A] text-2xl mb-4"> Misa y Recepción</h3>
@@ -487,6 +487,37 @@
 
 
                 </div>
+
+                <div class="full-width-separator left-0"></div>
+
+                <!-- Bloque Lluvia de sobres -->
+                <div class="lluvia-block w-full flex flex-col items-center justify-center py-16 bg-transparent">
+                    <!-- Cuadro blanco -->
+                    <div class="sobres-card relative bg-white shadow-2xl w-4/5 flex flex-col items-center text-center overflow-hidden p-8 animate-on-scroll"
+                        data-animate="animate-slide-right">
+
+                        <!-- Título dentro -->
+                        <h3 class="font-serif italic text-[#E18A8A] text-2xl mb-4">Lluvia de sobres</h3>
+
+                        <!-- Icono -->
+                        <img src="resources/sobre.png" alt="Icono ubicación" class="w-48 h-48 mb-4" />
+
+                        <div class="space-y-2">
+                            <!-- Dirección -->
+                            <p class="font-serif text-[#985656] text-base leading-snug" style="margin-bottom: 6rem;">
+                                Tu presencia es el mejor regalo,
+                                pero si deseas contribuir, habrág
+                                una lluvia de sobres en la celebración.
+                            </p>
+                        </div>
+
+                        <!-- Flores al fondo del cuadro -->
+                        <img src="resources/flores_1.png" alt="Flores decorativas"
+                            class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-8 w-4/5 object-contain pointer-events-none" />
+
+                    </div>
+                </div>
+
                 <div class="full-width-separator left-0"></div>
                 <!-- Bloque Confirmación y Mensaje Final -->
                 <div class="relative w-full flex flex-col items-center justify-center py-20 bg-transparent">
@@ -507,8 +538,8 @@
                         data-animate="animate-fadeInUp" />
 
                     <!-- Primer cuadro (Confirmar asistencia) -->
-                    <div
-                        class="relative bg-white rounded-3xl shadow-2xl w-4/5 md:w-3/5 aspect-square flex flex-col items-center justify-center text-center p-8 mb-16 z-30 opacity-0 animate-on-scroll" data-animate="animate-fadeInLeft">
+                    <div class="relative bg-white rounded-3xl shadow-2xl w-4/5 md:w-3/5 aspect-square flex flex-col items-center justify-center text-center p-8 mb-16 z-30 opacity-0 animate-on-scroll"
+                        data-animate="animate-fadeInLeft">
 
                         <h2 class="font-serif text-[#E18A8A] text-3xl mb-6">Confirmar<br>asistencia</h2>
 
@@ -527,8 +558,8 @@
                     </div>
 
                     <!-- Segundo cuadro (Mensaje final) -->
-                    <div
-                        class="relative bg-white rounded-3xl shadow-2xl w-4/5 md:w-3/5 aspect-square flex flex-col items-center justify-center text-center p-8 z-20 opacity-0 animate-on-scroll" data-animate="animate-fadeInLeft">
+                    <div class="relative bg-white rounded-3xl shadow-2xl w-4/5 md:w-3/5 aspect-square flex flex-col items-center justify-center text-center p-8 z-20 opacity-0 animate-on-scroll"
+                        data-animate="animate-fadeInLeft">
 
                         <h2 class="font-serif text-[#E18A8A] text-3xl mb-6">Te esperamos</h2>
 
