@@ -21,7 +21,7 @@
         }
 
         body {
-            background-image: url("resources/background.jpg");
+            background-color: #EF9FA2;
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -52,13 +52,13 @@
         .pink-divider {
             height: 2px;
             width: 100%;
-            background-color: #EF9FA2;
+            background-color: #fff;
             margin: 2rem 0;
             z-index: 10;
         }
 
         .custom-gradient {
-            background: linear-gradient(to top, #EF9FA2, transparent);
+            background: linear-gradient(to top, #fff, transparent);
             width: 100%;
             position: absolute;
             z-index: 0;
@@ -68,7 +68,7 @@
         .play-btn {
             width: 40px;
             height: 40px;
-            background-color: white;
+            background-color: #EF9FA2;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -90,7 +90,7 @@
             height: 0;
             border-left: 10px solid transparent;
             border-right: 10px solid transparent;
-            border-bottom: 18px solid #EF9FA2;
+            border-bottom: 18px solid #fff;
             position: absolute;
             transform: rotate(90deg);
             transition: all 0.2s;
@@ -102,7 +102,7 @@
             border-left: 0;
             border-right: 0;
             border-bottom: 0;
-            background: #EF9FA2;
+            background: #fff;
             clip-path: none;
         }
 
@@ -245,7 +245,7 @@
 
 
         .date-rect {
-            background-color: rgba(239, 159, 162, 0.8);
+            background-color: rgba(255, 255, 255, 0.8);
             /* Rosa con 80% de opacidad */
             border-radius: 3rem;
             /* Bordes redondeados */
@@ -271,7 +271,7 @@
         .full-width-separator {
             width: 100vw;
             height: 1rem;
-            background-color: #EF9FA2;
+            background-color: #fff;
             margin-top: 0rem;
         }
 
@@ -332,7 +332,7 @@
                 <source src="resources/presentacion.mp4" type="video/mp4">
             </video>
 
-            <div class="content-center py-10 text-center text-[#EF9FA2]">
+            <div class="content-center py-10 text-center text-white">
                 <h2 id="main-title" class="text-3xl font-serif animate-on-scroll"
                     data-animate="animate__animated animate__fadeInLeft">MIS XV</h2>
                 <h1 class="text-8xl shecarea-font mt-2 animate-on-scroll"
@@ -341,7 +341,7 @@
 
                 <!-- Botón de reproducción y separador debajo -->
                 <div class="button-container">
-                    <h2 class="text-3xl font-serif text-white animate-on-scroll mb-4" style="z-index: 10;"
+                    <h2 class="text-3xl font-serif text-[#EF9FA2] animate-on-scroll mb-4" style="z-index: 10;"
                         data-animate="animate__animated animate__fadeInUp">
                         CLIC AQUÍ
                     </h2>
@@ -366,15 +366,15 @@
                 <div class="relative w-full flex justify-center mt-20">
 
                     <!-- Cuadro rosa con texto -->
-                    <div class="pink-box bg-[#EF9FA2] w-[70%] p-8 text-center animate-on-scroll"
+                    <div class="pink-box bg-white w-[70%] p-8 text-center animate-on-scroll"
                         data-animate="animate-reveal">
-                        <p class="font-serif italic text-white text-lg leading-relaxed">
-                            "Hoy comienza un nuevo <br>
-                            capítulo en mi vida, y no hay <br>
-                            mayor alegría que compartirlo <br>
-                            con las personas que más <br>
-                            quiero. Te invito a celebrar mis <br>
-                            XV en una noche mágica e <br>
+                        <p class="font-serif italic text-[#EF9FA2] text-lg leading-relaxed">
+                            "Hoy comienza un nuevo
+                            capítulo en mi vida, y no hay
+                            mayor alegría que compartirlo
+                            con las personas que más
+                            quiero. Te invito a celebrar mis
+                            XV en una noche mágica e
                             inolvidable."
                         </p>
                     </div>
@@ -388,7 +388,7 @@
                 <!-- Rectángulo con fecha -->
                 <div class="relative w-full flex justify-center mt-8">
                     <div class="date-rect animate-on-scroll" data-animate="animate-slide-up">
-                        <p class="text-white text-lg font-serif">VIERNES 12 DE DICIEMBRE 2025</p>
+                        <p class="text-[#EF9FA2] text-lg font-serif">VIERNES 12 DE DICIEMBRE 2025</p>
                     </div>
                 </div>
 
@@ -410,22 +410,22 @@
 
                     <!-- Contenedor de textos -->
                     <div class="text-center space-y-6">
-                        <p class="font-serif italic text-[#E18A8A] text-2xl animate-on-scroll"
+                        <p class="font-serif italic text-white text-2xl animate-on-scroll"
                             data-animate="animate-slide-right">
                             Con la bendición de Dios<br>y de mis padres
                         </p>
 
-                        <p class="font-serif text-[#985656] text-2xl animate-on-scroll"
+                        <p class="font-serif text-[#E3E3E3] text-2xl animate-on-scroll"
                             data-animate="animate-slide-right">
                             Ana Laura López Álvarez<br>José de Jesús Vázquez Betancourt
                         </p>
 
-                        <p class="font-serif italic text-[#E18A8A] text-2xl animate-on-scroll"
+                        <p class="font-serif italic text-white text-2xl animate-on-scroll"
                             data-animate="animate-slide-right">
                             Acompañada de<br>mis padrinos
                         </p>
 
-                        <p class="font-serif text-[#985656] text-2xl animate-on-scroll"
+                        <p class="font-serif text-[#E3E3E3] text-2xl animate-on-scroll"
                             data-animate="animate-slide-right">
                             Brenda López Álvarez<br>Benito Escalante Resendiz
                         </p>
@@ -440,7 +440,7 @@
                 <div class="ubicaciones-block w-full flex flex-col items-center justify-center py-16 bg-transparent">
 
                     <!-- Título principal -->
-                    <h2 class="font-serif italic text-[#E18A8A] text-3xl mb-10 animate-on-scroll"
+                    <h2 class="font-serif italic text-white text-3xl mb-10 animate-on-scroll"
                         data-animate="animate-slide-right">Ubicacion</h2>
 
                     <!-- Cuadro blanco -->
@@ -529,7 +529,7 @@
 
                     <!-- Imagen decorativa entre los cuadros -->
                     <img src="resources/flores_1.png" alt="Flores decorativas"
-                        class="absolute top-2/5 left-2/5 transform -translate-x-1/2 -translate-y-1/2 w-56 object-contain pointer-events-none z-30 opacity-0 animate-on-scroll"
+                        class="absolute top-1/2 left-2/5 transform -translate-x-1/2 -translate-y-1/2 w-56 object-contain pointer-events-none z-30 opacity-0 animate-on-scroll"
                         data-animate="animate-fadeInUp" />
 
                     <!-- Imagen decorativa esquina inferior izquierda -->
@@ -564,13 +564,13 @@
                         <h2 class="font-serif text-[#E18A8A] text-3xl mb-6">Te esperamos</h2>
 
                         <p class="font-serif text-[#985656] text-base leading-snug">
-                            Con mucho cariño y<br>
-                            emoción, te esperamos<br>
-                            para compartir juntos un<br>
-                            momento inolvidable, lleno<br>
-                            de alegría, amor y<br>
-                            recuerdos que quedarán<br>
-                            por siempre en nuestro<br>
+                            Con mucho cariño y
+                            emoción, te esperamos
+                            para compartir juntos un
+                            momento inolvidable, lleno
+                            de alegría, amor y
+                            recuerdos que quedarán
+                            por siempre en nuestro
                             corazón.
                         </p>
                     </div>
